@@ -1,20 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30914.41
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arnolyzer.Analyzers", "Arnolyzer.Analyzers\Arnolyzer.Analyzers.csproj", "{0EAB24DA-09A0-4340-8DA4-540D3DDEBBF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arnolyzer.Analyzers", "Arnolyzer.Analyzers\Arnolyzer.Analyzers.csproj", "{0EAB24DA-09A0-4340-8DA4-540D3DDEBBF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arnolyzer.Tests", "Arnolyzer.Tests\Arnolyzer.Tests.csproj", "{2EE79969-B041-47B1-81CF-1BA096902B49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arnolyzer.Tests", "Arnolyzer.Tests\Arnolyzer.Tests.csproj", "{2EE79969-B041-47B1-81CF-1BA096902B49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arnolyzer", "Arnolyzer\Arnolyzer.csproj", "{00A23C16-3EAE-48F3-A595-FE6F45BAF625}"
-	ProjectSection(ProjectDependencies) = postProject
-		{0EAB24DA-09A0-4340-8DA4-540D3DDEBBF4} = {0EAB24DA-09A0-4340-8DA4-540D3DDEBBF4}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArnolyzerDogfood", "ArnolyzerDogfood\ArnolyzerDogfood.csproj", "{AD9ED06D-673C-4455-B87C-6E420752DAF8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArnolyzerDocumentationGenerator", "ArnolyzerDocumentationGenerator\ArnolyzerDocumentationGenerator.csproj", "{71443423-EFF6-4DA6-BE35-804A1424134A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArnolyzerDocumentationGenerator", "ArnolyzerDocumentationGenerator\ArnolyzerDocumentationGenerator.csproj", "{DD0CAC1C-970D-438B-BD62-C52EC5E9842D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,20 +23,15 @@ Global
 		{2EE79969-B041-47B1-81CF-1BA096902B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EE79969-B041-47B1-81CF-1BA096902B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EE79969-B041-47B1-81CF-1BA096902B49}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00A23C16-3EAE-48F3-A595-FE6F45BAF625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00A23C16-3EAE-48F3-A595-FE6F45BAF625}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00A23C16-3EAE-48F3-A595-FE6F45BAF625}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00A23C16-3EAE-48F3-A595-FE6F45BAF625}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD9ED06D-673C-4455-B87C-6E420752DAF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD9ED06D-673C-4455-B87C-6E420752DAF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD9ED06D-673C-4455-B87C-6E420752DAF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD9ED06D-673C-4455-B87C-6E420752DAF8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71443423-EFF6-4DA6-BE35-804A1424134A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71443423-EFF6-4DA6-BE35-804A1424134A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71443423-EFF6-4DA6-BE35-804A1424134A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71443423-EFF6-4DA6-BE35-804A1424134A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD0CAC1C-970D-438B-BD62-C52EC5E9842D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD0CAC1C-970D-438B-BD62-C52EC5E9842D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD0CAC1C-970D-438B-BD62-C52EC5E9842D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD0CAC1C-970D-438B-BD62-C52EC5E9842D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C6166F5-6931-4AC0-91AB-FC573DFF1652}
 	EndGlobalSection
 EndGlobal

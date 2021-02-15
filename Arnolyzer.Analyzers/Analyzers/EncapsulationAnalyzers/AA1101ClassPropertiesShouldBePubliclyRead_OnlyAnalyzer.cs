@@ -28,7 +28,7 @@ namespace Arnolyzer.Analyzers.EncapsulationAnalyzers
                                 nameof(Resources.AA1101ClassPropertiesShouldBePubliclyReadOnlyMessageFormat),
                                 SuppressionAttributes);
 
-        private SettingsHandler _settingsHandler;
+        private readonly SettingsHandler _settingsHandler = SettingsHandler.CreateHandler();
 
         public AnalyzerDetails GetAnalyzerDetails() => AA1101Details;
 
@@ -38,7 +38,8 @@ namespace Arnolyzer.Analyzers.EncapsulationAnalyzers
 
         public override void Initialize(AnalysisContext context)
         {
-            _settingsHandler = SettingsHandler.CreateHandler();
+            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
+            context.EnableConcurrentExecution();
             context.RegisterSyntaxTreeAction(AnalyzeSyntaxTree);
         }
 

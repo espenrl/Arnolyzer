@@ -33,7 +33,11 @@ namespace Arnolyzer.Analyzers.EncapsulationAnalyzers
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
         public override void Initialize(AnalysisContext context)
-            => context.RegisterSyntaxTreeAction(AnalyzeSyntaxTree);
+        {
+            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
+            context.EnableConcurrentExecution();
+            context.RegisterSyntaxTreeAction(AnalyzeSyntaxTree);
+        }
 
         [HasSideEffects]
         private static void AnalyzeSyntaxTree(SyntaxTreeAnalysisContext context)

@@ -31,7 +31,11 @@ namespace Arnolyzer.Analyzers.SingleResponsibilityAnalyzers
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
         public override void Initialize(AnalysisContext context)
-            => context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Method);
+        {
+            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
+            context.EnableConcurrentExecution();
+            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Method);
+        }
 
         [MutatesParameter]
         private static void AnalyzeSymbol(SymbolAnalysisContext context)

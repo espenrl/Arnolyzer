@@ -57,6 +57,9 @@ namespace Arnolyzer.Analyzers.ImmutabilityAnalyzers
         public override void Initialize(AnalysisContext context)
         {
             _settingsHandler = SettingsHandler.CreateHandler();
+
+            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
+            context.EnableConcurrentExecution();
             context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Method);
         }
 

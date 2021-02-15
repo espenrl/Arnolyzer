@@ -27,7 +27,7 @@ namespace Arnolyzer.Analyzers.PureFunctionAnalyzers
                                 nameof(Resources.AA1000StaticMethodsShouldNotBeVoidMessageFormat),
                                 SuppressionAttributes);
 
-        private SettingsHandler _settingsHandler;
+        private SettingsHandler _settingsHandler = SettingsHandler.CreateHandler();
 
         public AnalyzerDetails GetAnalyzerDetails() => AA1000Details;
 
@@ -37,7 +37,8 @@ namespace Arnolyzer.Analyzers.PureFunctionAnalyzers
 
         public override void Initialize(AnalysisContext context)
         {
-            _settingsHandler = SettingsHandler.CreateHandler();
+            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
+            context.EnableConcurrentExecution();
             context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Method);
         }
 

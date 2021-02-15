@@ -25,7 +25,7 @@ namespace Arnolyzer.Analyzers.LiskovSubstitutionPrincipleAnalyzers
                           {
                               var identifier = t.AsNode() as IdentifierNameSyntax;
                               var identifierType = context.SemanticModel.GetSymbolInfo(identifier);
-                              if (identifierType.Symbol.Equals(exceptionType))
+                              if (SymbolEqualityComparer.Default.Equals(identifierType.Symbol, exceptionType))
                               {
                                   context.ReportDiagnostic(Diagnostic.Create(rule, identifier.GetLocation()));
                               }
@@ -34,7 +34,7 @@ namespace Arnolyzer.Analyzers.LiskovSubstitutionPrincipleAnalyzers
                           {
                               var identifier = t.Parent as IdentifierNameSyntax;
                               var identiferType = context.SemanticModel.GetTypeInfo(identifier).Type;
-                              if (identiferType.Equals(exceptionType))
+                              if (SymbolEqualityComparer.Default.Equals(identiferType, exceptionType))
                               {
                                   context.ReportDiagnostic(Diagnostic.Create(rule, identifier.GetLocation()));
                               }

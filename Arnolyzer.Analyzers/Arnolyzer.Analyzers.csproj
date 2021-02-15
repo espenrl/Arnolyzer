@@ -1,155 +1,31 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0EAB24DA-09A0-4340-8DA4-540D3DDEBBF4}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Arnolyzer</RootNamespace>
-    <AssemblyName>ArnolyzerAnalyzers</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>Arnolyzer.Analyzers.ruleset</CodeAnalysisRuleSet>
+    <Version>1.3.0</Version>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <CodeAnalysisRuleSet>Arnolyzer.Analyzers.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="JetBrains.Annotations, Version=7.1.3000.2254, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\ReSharper.Annotations.7.1.3.130415\lib\net\JetBrains.Annotations.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.CodeAnalysis, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.1.1.1\lib\net45\Microsoft.CodeAnalysis.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.1.1.1\lib\net45\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SuccincT, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SuccincT.2.1.0\lib\portable40-net40+win8+wpa81\SuccincT.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Collections.Immutable.1.1.37\lib\dotnet\System.Collections.Immutable.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="YamlDotNet, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.3.8.0\lib\net35\YamlDotNet.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Analyzers\AnalyzerCategoryDetails.cs" />
-    <Compile Include="Analyzers\ImmutabilityAnalyzers\VariableMutations.cs" />
-    <Compile Include="Analyzers\NameAndLocation.cs" />
-    <Compile Include="Analyzers\INamedItemSuppresionAttributeDetailsReporter.cs" />
-    <Compile Include="Analyzers\NamedItemSuppresionAttributeDetails.cs" />
-    <Compile Include="Analyzers\AnalyzerDetails.cs" />
-    <Compile Include="Analyzers\ImmutabilityAnalyzers\AA1301VariablesShouldBeAssignedOnceOnlyAnalyzer.cs" />
-    <Compile Include="Analyzers\ImmutabilityAnalyzers\AA1300ParametersShouldNotBeModifiedAnalyzer.cs" />
-    <Compile Include="Analyzers\GlobalStateAnalyzers\AA1201AvoidUsingStaticPropertiesAnalyzer.cs" />
-    <Compile Include="Analyzers\GlobalStateAnalyzers\AA1200AvoidUsingStaticFieldsAnalyzer.cs" />
-    <Compile Include="Analyzers\IPlannedAnalyzerDetailsReporter.cs" />
-    <Compile Include="Analyzers\PureFunctionAnalyzers\AA1002StaticMethodsShouldNotAccessStateAnalyzer.cs" />
-    <Compile Include="Analyzers\PureFunctionAnalyzers\AA1003StaticMethodsShouldNotCreateStateAnalyzer.cs" />
-    <Compile Include="Analyzers\SingleResponsibilityAnalyzers\AA2102FileTooLongAnalyzer.cs" />
-    <Compile Include="Analyzers\SingleResponsibilityAnalyzers\AA2101MethodTooLongAnalyzer.cs" />
-    <Compile Include="ArnolyzerVersion.cs" />
-    <Compile Include="RuleExceptionAttributes\ConstantValueProviderAttribute.cs" />
-    <Compile Include="RuleExceptionAttributes\MutableParameterAttribute.cs" />
-    <Compile Include="RuleExceptionAttributes\MutableVariableAttribute.cs" />
-    <Compile Include="RuleExceptionAttributes\GlobalStateAttribute.cs" />
-    <Compile Include="RuleExceptionAttributes\HasSingleResponsibility.cs" />
-    <Compile Include="RuleExceptionAttributes\IAttributeDescriber.cs" />
-    <Compile Include="RuleExceptionAttributes\MutablePropertyAttribute.cs" />
-    <Compile Include="Analyzers\DefaultState.cs" />
-    <Compile Include="Analyzers\EncapsulationAnalyzers\AA1101ClassPropertiesShouldBePubliclyRead_OnlyAnalyzer.cs" />
-    <Compile Include="Analyzers\Factories\LocalizableStringFactory.cs" />
-    <Compile Include="RuleExceptionAttributes\HasSideEffectsAttribute.cs" />
-    <Compile Include="RuleExceptionAttributes\MutatesParameterAttribute.cs" />
-    <Compile Include="Analyzers\AnalyzerCategories.cs" />
-    <Compile Include="Analyzers\CommonFunctions.cs" />
-    <Compile Include="Analyzers\EncapsulationAnalyzers\AA1100InterfacePropertiesShouldBeRead_OnlyAnalyzer.cs" />
-    <Compile Include="Analyzers\EncapsulationAnalyzers\AA1102InnerTypesMustBePrivateAnalyzer.cs" />
-    <Compile Include="Analyzers\IAnalyzerDetailsReporter.cs" />
-    <Compile Include="Analyzers\LiskovSubstitutionPrincipleAnalyzers\AA2001DoNotUseNotSupportedExceptionAnalyzer.cs" />
-    <Compile Include="Analyzers\LiskovSubstitutionPrincipleAnalyzers\AA2000DoNotUseNotImplementedExceptionAnalyzer.cs" />
-    <Compile Include="Analyzers\LiskovSubstitutionPrincipleAnalyzers\LSPViolatingExceptionReporter.cs" />
-    <Compile Include="Analyzers\Settings\SettingsDetails.cs" />
-    <Compile Include="Analyzers\Settings\SettingsHandler.cs" />
-    <Compile Include="Analyzers\SingleResponsibilityAnalyzers\AA2104FileMustOnlyContainOneTypeDefinitionAnalyzer.cs" />
-    <Compile Include="Analyzers\SingleResponsibilityAnalyzers\AA2103MethodShouldNotContainAndAnalyzer.cs" />
-    <Compile Include="Analyzers\SingleResponsibilityAnalyzers\AA2100MethodParametersMustNotBeRefOrOutAnalyzer.cs" />
-    <Compile Include="Analyzers\PureFunctionAnalyzers\AA1001StaticMethodsShouldHaveAtLeastOneParameterAnalyzer.cs" />
-    <Compile Include="Analyzers\PureFunctionAnalyzers\AA1000StaticMethodsShouldNotBeVoidAnalyzer.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ReleaseNotes\Release.1.0.0.md" />
-    <None Include="ReleaseNotes\Release.1.2.0.md" />
-    <None Include="ReleaseNotes\Release.1.1.0.md" />
-    <None Include="Analysis.ruleset" />
-    <None Include="Arnolyzer.Analyzers.ruleset" />
-    <None Include="packages.config" />
-    <None Include="arnolyzer.yml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
-    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup />
+
+  <!-- NuGet -->
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PackageId>erl.Arnolyzer</PackageId>
+    <Authors>Espen Røvik Larsen;David Arno</Authors>
+    <Description>    </Description>
+    <PackageTags></PackageTags>
+    <RepositoryUrl>https://github.com/espenrl/Arnolyzer</RepositoryUrl>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.8.0" />
+    <PackageReference Include="SuccincT" Version="4.0.0" />
+    <PackageReference Include="YamlDotNet.NetCore" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>

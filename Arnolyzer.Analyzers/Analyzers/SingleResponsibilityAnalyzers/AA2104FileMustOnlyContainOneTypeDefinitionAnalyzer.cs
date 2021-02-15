@@ -32,7 +32,12 @@ namespace Arnolyzer.Analyzers.SingleResponsibilityAnalyzers
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
-        public override void Initialize(AnalysisContext context) => context.RegisterSyntaxTreeAction(AnalyzeSyntaxTree);
+        public override void Initialize(AnalysisContext context)
+        {
+            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
+            context.EnableConcurrentExecution();
+            context.RegisterSyntaxTreeAction(AnalyzeSyntaxTree);
+        }
 
         [MutatesParameter]
         private static void AnalyzeSyntaxTree(SyntaxTreeAnalysisContext context)
