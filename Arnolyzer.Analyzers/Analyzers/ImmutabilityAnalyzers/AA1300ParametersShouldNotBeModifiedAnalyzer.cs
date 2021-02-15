@@ -42,7 +42,7 @@ namespace Arnolyzer.Analyzers.ImmutabilityAnalyzers
         public IList<NamedItemSuppresionAttributeDetails> GetNamedItemSuppresionAttributeDetails() =>
             new List<NamedItemSuppresionAttributeDetails> { NamedItemSuppressionDetails };
 
-        private SettingsHandler _settingsHandler;
+        private SettingsHandler _settingsHandler = SettingsHandler.CreateHandler();
 
         private static readonly DiagnosticDescriptor AnalyzerRule = AA1300Details.GetDiagnosticDescriptor();
 
@@ -54,8 +54,6 @@ namespace Arnolyzer.Analyzers.ImmutabilityAnalyzers
 
         public override void Initialize(AnalysisContext context)
         {
-            _settingsHandler = SettingsHandler.CreateHandler();
-
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
             context.EnableConcurrentExecution();
             context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Method);

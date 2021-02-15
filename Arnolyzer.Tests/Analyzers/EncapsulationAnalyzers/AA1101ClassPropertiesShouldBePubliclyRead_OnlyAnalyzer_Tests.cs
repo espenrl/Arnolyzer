@@ -25,7 +25,7 @@ namespace Arnolyzer.Tests.Analyzers.EncapsulationAnalyzers
         [TestMethod]
         public void NoCode_ShouldYieldNoDiagnostics() =>
             DiagnosticVerifier.VerifyDiagnostics<AA1101ClassPropertiesShouldBePubliclyRead_OnlyAnalyzer>(
-                @"..\..\CodeUnderTest\EmptyFile.cs");
+                @"..\..\..\CodeUnderTest\EmptyFile.cs");
 
         [TestMethod]
         public void CodeInIgnoredFile_YieldsNoDiagnostics() =>
@@ -52,7 +52,7 @@ namespace Arnolyzer.Tests.Analyzers.EncapsulationAnalyzers
                                      Option<DiagnosticLocation>.Some(new DiagnosticLocation(20, 13, 16)));
 
             DiagnosticVerifier.VerifyDiagnostics<AA1101ClassPropertiesShouldBePubliclyRead_OnlyAnalyzer>(
-                @"..\..\CodeUnderTest\CodeToTestClassPropertySetters.cs",
+                @"..\..\..\CodeUnderTest\CodeToTestClassPropertySetters.cs",
                 expected1,
                 expected2);
         }

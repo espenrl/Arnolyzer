@@ -44,7 +44,7 @@ namespace Arnolyzer.Analyzers.ImmutabilityAnalyzers
         public IList<NamedItemSuppresionAttributeDetails> GetNamedItemSuppresionAttributeDetails() =>
             new List<NamedItemSuppresionAttributeDetails> { NamedItemSuppressionDetails };
 
-        private SettingsHandler _settingsHandler;
+        private SettingsHandler _settingsHandler = SettingsHandler.CreateHandler();
 
         private static readonly DiagnosticDescriptor AnalyzerRule = AA1301Details.GetDiagnosticDescriptor();
 
@@ -56,8 +56,6 @@ namespace Arnolyzer.Analyzers.ImmutabilityAnalyzers
 
         public override void Initialize(AnalysisContext context)
         {
-            _settingsHandler = SettingsHandler.CreateHandler();
-
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
             context.EnableConcurrentExecution();
             context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Method);
@@ -75,7 +73,7 @@ namespace Arnolyzer.Analyzers.ImmutabilityAnalyzers
             var identifiers = syntax.DescendantNodes()
                                     .Where(node => node.IsKind(SyntaxKind.VariableDeclarator))
                                     .Cast<VariableDeclaratorSyntax>()
-                                    .Select(variable => variable.Identifier.Value.ToString()).ToList();
+                                    .Select(variable => variable.Identifier.Value!.ToString()).ToList();
 
 
             foreach (var reassignment in GetAllNonIgnoredMutations(syntax, ignoredVariables, identifiers))

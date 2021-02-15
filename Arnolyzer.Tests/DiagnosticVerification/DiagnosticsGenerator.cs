@@ -25,17 +25,18 @@ namespace Arnolyzer.Tests.DiagnosticVerification
                                                                                         TextDocument document,
                                                                                         AnalyzerOptions options)
         {
-            var diagnostics = document.Project.GetCompilationAsync()
-                                      .Result
-                                      .WithAnalyzers(ImmutableArray.Create(analyzer),
-                                                     options)
-                                      .GetAnalyzerDiagnosticsAsync().Result;
+            static IOrderedEnumerable<Diagnostic> SortDiagnostics(IEnumerable<Diagnostic> diagnostics)
+            {
+                return diagnostics.OrderBy(d => d.Location.SourceSpan.Start);
+            }
+
+            var diagnostics = document.Project
+                .GetCompilationAsync().Result
+                !.WithAnalyzers(ImmutableArray.Create(analyzer), options)
+                .GetAnalyzerDiagnosticsAsync().Result;
 
             return SortDiagnostics(diagnostics);
         }
-
-        private static IOrderedEnumerable<Diagnostic> SortDiagnostics(IEnumerable<Diagnostic> diagnostics) =>
-            diagnostics.OrderBy(d => d.Location.SourceSpan.Start);
 
         private sealed class SettingsFile : AdditionalText
         {

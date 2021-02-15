@@ -36,6 +36,10 @@ namespace Arnolyzer.Analyzers.LiskovSubstitutionPrincipleAnalyzers
                 compileContext =>
                 {
                     var notSupportedExceptionName = compileContext.Compilation.GetTypeByMetadataName("System.NotSupportedException");
+                    if (notSupportedExceptionName is null)
+                    {
+                        throw new Exception($"Could not get type for {nameof(NotSupportedException)}.");
+                    }
                     compileContext.RegisterSyntaxNodeAction(
                         symbolContext => LSPViolatingExceptionReporter.ReportLSPViolatingExceptionIfThrown(symbolContext, notSupportedExceptionName, Rule), 
                         SyntaxKind.ThrowStatement);

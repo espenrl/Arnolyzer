@@ -16,7 +16,7 @@ namespace Arnolyzer.Analyzers.EncapsulationAnalyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class AA1101ClassPropertiesShouldBePubliclyRead_OnlyAnalyzer : DiagnosticAnalyzer, IAnalyzerDetailsReporter
     {
-        private static readonly IList<Type> SuppressionAttributes = new List<Type> {typeof(MutablePropertyAttribute)};
+        private static readonly IList<Type> SuppressionAttributes = new List<Type> { typeof(MutablePropertyAttribute) };
 
         private static readonly AnalyzerDetails AA1101Details =
             new AnalyzerDetails(nameof(AA1101ClassPropertiesShouldBePubliclyRead_OnlyAnalyzer),
@@ -98,8 +98,9 @@ namespace Arnolyzer.Analyzers.EncapsulationAnalyzers
         private static bool NodeIsPublicClassDeclaration(SyntaxNode node)
         {
             var kind = node?.Kind();
-            return kind == SyntaxKind.ClassDeclaration &&
-                   SyntaxNodeIsPublic(((BaseTypeDeclarationSyntax) node).Modifiers);
+            return kind == SyntaxKind.ClassDeclaration
+                && node is BaseTypeDeclarationSyntax btds
+                && SyntaxNodeIsPublic(btds.Modifiers);
         }
 
         private static bool NodeIsPropertyDeclaration(SyntaxNode node)

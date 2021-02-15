@@ -86,6 +86,6 @@ namespace Arnolyzer.Analyzers.ImmutabilityAnalyzers
             GetIdentifierFromIdentifierNameSyntax((IdentifierNameSyntax)expression.Operand);
 
         private static string GetIdentifierFromIdentifierNameSyntax(IdentifierNameSyntax syntax) =>
-            syntax.Identifier.Value.ToString();
+            syntax.Identifier.Value?.ToString() ?? string.Empty;
     }
 }

@@ -26,15 +26,13 @@ namespace Arnolyzer.Analyzers.GlobalStateAnalyzers
 
         public AnalyzerDetails GetAnalyzerDetails() => AA2101Details;
 
-        private SettingsHandler _settingsHandler;
+        private SettingsHandler _settingsHandler = SettingsHandler.CreateHandler();
         private static readonly DiagnosticDescriptor Rule = AA2101Details.GetDiagnosticDescriptor();
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
         public override void Initialize(AnalysisContext context)
         {
-            _settingsHandler = SettingsHandler.CreateHandler();
-
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
             context.EnableConcurrentExecution();
             context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Field);

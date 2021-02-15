@@ -14,16 +14,17 @@ namespace Arnolyzer.Analyzers.Settings
         private readonly string _settingsFileName;
         private readonly string _arnolyzerHome;
 
-        private SettingsDetails _mergedSettings;
+        private SettingsDetails? _mergedSettings;
 
         [ConstantValueProvider]
         public static SettingsHandler CreateHandler() => new SettingsHandler(SettingsFileName, "ARNOLYZER_HOME");
 
-        public static SettingsHandler CreateHandlerSpecifyingHome(string arnolyzerHome) => 
-            new SettingsHandler(SettingsFileName, arnolyzerHome);
+        public static SettingsHandler CreateHandlerSpecifyingHome(string arnolyzerHome)
+        {
+            return new SettingsHandler(SettingsFileName, arnolyzerHome);
+        }
 
-        private SettingsHandler(string settingsFileName,
-                               string arnolyzerHome)
+        private SettingsHandler(string settingsFileName, string arnolyzerHome)
         {
             _settingsFileName = settingsFileName;
             _arnolyzerHome = arnolyzerHome;

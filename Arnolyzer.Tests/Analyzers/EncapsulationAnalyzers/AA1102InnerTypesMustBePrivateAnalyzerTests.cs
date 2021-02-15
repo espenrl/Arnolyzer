@@ -11,7 +11,7 @@ namespace Arnolyzer.Tests.Analyzers.EncapsulationAnalyzers
     {
         [TestMethod]
         public void NoCode_ShouldYieldNoDiagnostics() =>
-            DiagnosticVerifier.VerifyDiagnostics<AA1102InnerTypesMustBePrivateAnalyzer>(@"..\..\CodeUnderTest\EmptyFile.cs");
+            DiagnosticVerifier.VerifyDiagnostics<AA1102InnerTypesMustBePrivateAnalyzer>(@"..\..\..\CodeUnderTest\EmptyFile.cs");
 
         [TestMethod]
         public void NonPrivateInnerTypes_YieldDiagnostics()
@@ -34,7 +34,7 @@ namespace Arnolyzer.Tests.Analyzers.EncapsulationAnalyzers
                                      Option<DiagnosticLocation>.Some(new DiagnosticLocation(9, 22, 28)));
 
             DiagnosticVerifier.VerifyDiagnostics<AA1102InnerTypesMustBePrivateAnalyzer>(
-                @"..\..\CodeUnderTest\CodeToTestInnerTypesMustBePrivate.cs",
+                @"..\..\..\CodeUnderTest\CodeToTestInnerTypesMustBePrivate.cs",
                 expected1,
                 expected2,
                 expected3);

@@ -7,7 +7,7 @@ namespace Arnolyzer.Analyzers.Settings
 {
     public class SettingsDetails
     {
-        private string _ignorePathsRegex;
+        private string? _ignorePathsRegex;
 
         public SettingsDetails() : this(false, false, new List<string>()) { }
 
@@ -27,8 +27,7 @@ namespace Arnolyzer.Analyzers.Settings
         [UsedImplicitly, MutableProperty] // setter used by yaml deserialization
         public IEnumerable<string> IgnorePaths { get; set; }
 
-        public string IgnorePathsRegex =>
-            _ignorePathsRegex ?? (_ignorePathsRegex = GenerateRegexFromRestorePaths(IgnorePaths));
+        public string IgnorePathsRegex => _ignorePathsRegex ??= GenerateRegexFromRestorePaths(IgnorePaths);
 
         public static SettingsDetails Merge(SettingsDetails settings1, SettingsDetails settings2)
         {

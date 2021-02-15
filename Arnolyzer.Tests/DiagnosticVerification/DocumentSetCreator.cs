@@ -10,6 +10,7 @@ namespace Arnolyzer.Tests.DiagnosticVerification
     {
         private static readonly MetadataReference CorlibReference =
             MetadataReference.CreateFromFile(typeof(object).Assembly.Location);
+
         private static readonly MetadataReference SystemCoreReference =
             MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location);
 
@@ -29,9 +30,10 @@ namespace Arnolyzer.Tests.DiagnosticVerification
 
         private static Project CreateProject(string filePath)
         {
+            var fullPath = Path.GetFullPath(filePath);
             var projectId = ProjectId.CreateNewId(TestProjectName);
-            var source = File.ReadAllText(filePath);
-            var fileName = Path.GetFileName(filePath);
+            var source = File.ReadAllText(fullPath);
+            var fileName = Path.GetFileName(fullPath);
             var documentId = DocumentId.CreateNewId(projectId, fileName);
 
             var solution = new AdhocWorkspace()
@@ -41,7 +43,7 @@ namespace Arnolyzer.Tests.DiagnosticVerification
                 .AddMetadataReference(projectId, SystemCoreReference)
                 .AddDocument(documentId, fileName, SourceText.From(source));
 
-            return solution.GetProject(projectId);
+            return solution.GetProject(projectId)!;
         }
     }
 }

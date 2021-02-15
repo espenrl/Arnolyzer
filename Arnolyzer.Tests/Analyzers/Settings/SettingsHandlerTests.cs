@@ -14,7 +14,7 @@ namespace Arnolyzer.Tests.Analyzers.Settings
             var handler = SettingsHandler.CreateHandlerSpecifyingHome("");
             var settings =
                 handler.GetArnolyzerSettingsForProject(
-                    @"..\..\YamlTestFiles\IgnoreEnvironment\Project1\pretendSourceFile.txt");
+                    @"..\..\..\YamlTestFiles\IgnoreEnvironment\Project1\pretendSourceFile.txt");
 
             Assert.IsTrue(settings.IgnoreArnolyzerHome);
             Assert.IsTrue(settings.DoNotTraverse);
@@ -30,7 +30,7 @@ namespace Arnolyzer.Tests.Analyzers.Settings
             var handler = SettingsHandler.CreateHandlerSpecifyingHome("");
             var settings =
                 handler.GetArnolyzerSettingsForProject(
-                    @"..\..\YamlTestFiles\IgnoreEnvironment\Project2\pretendSourceFile.txt");
+                    @"..\..\..\YamlTestFiles\IgnoreEnvironment\Project2\pretendSourceFile.txt");
 
             Assert.IsTrue(settings.IgnoreArnolyzerHome);
             Assert.IsFalse(settings.DoNotTraverse);
@@ -45,11 +45,11 @@ namespace Arnolyzer.Tests.Analyzers.Settings
         [TestMethod]
         public void SettingsFileThatAllowsTraversalButNotEnvironment_OnlyLoadsProjectAndSolutionSettings()
         {
-            Environment.SetEnvironmentVariable("SHT_1", @"..\..\YamlTestFiles\arnolyzer.yml");
+            Environment.SetEnvironmentVariable("SHT_1", @"..\..\..\YamlTestFiles\arnolyzer.yml");
             var handler = SettingsHandler.CreateHandlerSpecifyingHome("SHT_1");
             var settings =
                 handler.GetArnolyzerSettingsForProject(
-                    @"..\..\YamlTestFiles\IgnoreEnvironment\Project2\pretendSourceFile.txt");
+                    @"..\..\..\YamlTestFiles\IgnoreEnvironment\Project2\pretendSourceFile.txt");
 
             Assert.IsTrue(settings.IgnoreArnolyzerHome);
             Assert.IsFalse(settings.DoNotTraverse);
@@ -64,11 +64,11 @@ namespace Arnolyzer.Tests.Analyzers.Settings
         [TestMethod]
         public void SettingsFileThatAllowsTraversalAndEnvironment_LoadsAllSettings()
         {
-            Environment.SetEnvironmentVariable("SHT_1", @"..\..\YamlTestFiles\arnolyzer.yml");
+            Environment.SetEnvironmentVariable("SHT_1", @"..\..\..\YamlTestFiles\arnolyzer.yml");
             var handler = SettingsHandler.CreateHandlerSpecifyingHome("SHT_1");
             var settings =
                 handler.GetArnolyzerSettingsForProject(
-                    @"..\..\YamlTestFiles\UseEnvironment\Project1\pretendSourceFile.txt");
+                    @"..\..\..\YamlTestFiles\UseEnvironment\Project1\pretendSourceFile.txt");
 
             Assert.IsTrue(settings.IgnoreArnolyzerHome);
             Assert.IsTrue(settings.DoNotTraverse);
@@ -85,11 +85,11 @@ namespace Arnolyzer.Tests.Analyzers.Settings
         [TestMethod]
         public void IncorrectlySetEnvironmentVariable_OnlyLoadsProjectAndSolutionSettings()
         {
-            Environment.SetEnvironmentVariable("SHT_2", @"..\..\YamlTestFiles\arnolyzer.yml");
+            Environment.SetEnvironmentVariable("SHT_2", @"..\..\..\YamlTestFiles\arnolyzer.yml");
             var handler = SettingsHandler.CreateHandlerSpecifyingHome("SHT_3");
             var settings =
                 handler.GetArnolyzerSettingsForProject(
-                    @"..\..\YamlTestFiles\UseEnvironment\Project1\pretendSourceFile.txt");
+                    @"..\..\..\YamlTestFiles\UseEnvironment\Project1\pretendSourceFile.txt");
 
             Assert.IsFalse(settings.IgnoreArnolyzerHome);
             Assert.IsFalse(settings.DoNotTraverse);

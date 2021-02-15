@@ -35,8 +35,7 @@ namespace Arnolyzer.Analyzers
 
             if (Title.ToString() != code)
             {
-                throw new ArgumentException($@"Title resource value isn't of the correct format: should be {code}",
-                                            nameof(titleResourceName));
+                throw new ArgumentException($@"Title resource value isn't of the correct format: should be {code}", nameof(titleResourceName));
             }
         }
 
@@ -52,14 +51,17 @@ namespace Arnolyzer.Analyzers
         public bool EnabledByDefault => _defaultState.IsEnabledByDefault();
         public string NameWithCode { get; }
 
-        public DiagnosticDescriptor GetDiagnosticDescriptor() =>
-            new DiagnosticDescriptor(DiagnosticId,
-                                     Title,
-                                     MessageFormat,
-                                     Category.Name,
-                                     Severity,
-                                     EnabledByDefault,
-                                     Description);
+        public DiagnosticDescriptor GetDiagnosticDescriptor()
+        {
+            return new DiagnosticDescriptor(
+                DiagnosticId,
+                Title,
+                MessageFormat,
+                Category.Name,
+                Severity,
+                EnabledByDefault,
+                Description);
+        }
 
         private static Tuple<string, string, string> DecomposeDetailsFromClassName(string className)
         {
@@ -76,7 +78,9 @@ namespace Arnolyzer.Analyzers
             return nameWithSpaces.Replace("_", "-");
         }
 
-        private static string DeriveCodeFromClassName(string className) => 
-            className.Substring(0, 6) + "-" + className.Substring(6).Replace("_", "");
+        private static string DeriveCodeFromClassName(string className)
+        {
+            return className.Substring(0, 6) + "-" + className.Substring(6).Replace("_", "");
+        }
     }
 }

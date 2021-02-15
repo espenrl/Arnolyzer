@@ -12,7 +12,7 @@ namespace Arnolyzer.Tests.Analyzers.EncapsulationAnalyzers
         [TestMethod]
         public void NoCode_ShouldYieldNoDiagnostics() =>
             DiagnosticVerifier.VerifyDiagnostics<AA1100InterfacePropertiesShouldBeRead_OnlyAnalyzer>(
-                @"..\..\CodeUnderTest\EmptyFile.cs");
+                @"..\..\..\CodeUnderTest\EmptyFile.cs");
 
         [TestMethod]
         public void InterfacePropertiesWithSetters_YieldsDiagnostics()
@@ -42,7 +42,7 @@ namespace Arnolyzer.Tests.Analyzers.EncapsulationAnalyzers
                                      Option<DiagnosticLocation>.Some(new DiagnosticLocation(12, 26, 29)));
 
             DiagnosticVerifier.VerifyDiagnostics<AA1100InterfacePropertiesShouldBeRead_OnlyAnalyzer>(
-                @"..\..\CodeUnderTest\CodeToTestInterfacePropertySetters.cs",
+                @"..\..\..\CodeUnderTest\CodeToTestInterfacePropertySetters.cs",
                 expected1,
                 expected2,
                 expected3);

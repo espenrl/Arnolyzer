@@ -12,7 +12,7 @@ namespace Arnolyzer.Tests.Analyzers.LiskovSubstitutionPrincipleAnalyzers
         [TestMethod]
         public void NoCode_ShouldYieldNoDiagnostics() =>
             DiagnosticVerifier.VerifyDiagnostics<AA2001DoNotUseNotSupportedExceptionAnalyzer>(
-                @"..\..\CodeUnderTest\EmptyFile.cs");
+                @"..\..\..\CodeUnderTest\EmptyFile.cs");
 
         [TestMethod]
         public void ThrowingNotSupported_YieldsDiagnostics()
@@ -40,7 +40,7 @@ namespace Arnolyzer.Tests.Analyzers.LiskovSubstitutionPrincipleAnalyzers
                                      Option<DiagnosticLocation>.Some(new DiagnosticLocation(63, 19, 26)));
 
             DiagnosticVerifier.VerifyDiagnostics<AA2001DoNotUseNotSupportedExceptionAnalyzer>(
-                @"..\..\CodeUnderTest\CodeToTestLSPViolatingExceptions.cs",
+                @"..\..\..\CodeUnderTest\CodeToTestLSPViolatingExceptions.cs",
                 expected1,
                 expected2,
                 expected3,

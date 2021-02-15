@@ -16,27 +16,35 @@ namespace Arnolyzer.Analyzers.LiskovSubstitutionPrincipleAnalyzers
                                                                INamedTypeSymbol exceptionType,
                                                                DiagnosticDescriptor rule)
         {
-            var throwStatement = context.Node as ThrowStatementSyntax;
+            if (context.Node is not ThrowStatementSyntax throwStatement || throwStatement.Expression is null)
+            {
+                return;
+            }
+
             throwStatement.Expression.DescendantNodesAndTokens()
                           .Where(t => t.IsKind(SyntaxKind.IdentifierName) || t.IsKind(SyntaxKind.IdentifierToken))
                           .TryFirst()
                           .Match()
                           .Some().Where(t => t.IsNode).Do(t =>
                           {
-                              var identifier = t.AsNode() as IdentifierNameSyntax;
-                              var identifierType = context.SemanticModel.GetSymbolInfo(identifier);
-                              if (SymbolEqualityComparer.Default.Equals(identifierType.Symbol, exceptionType))
+                              if (t.AsNode() is IdentifierNameSyntax identifier)
                               {
-                                  context.ReportDiagnostic(Diagnostic.Create(rule, identifier.GetLocation()));
+                                  var identifierType = context.SemanticModel.GetSymbolInfo(identifier);
+                                  if (SymbolEqualityComparer.Default.Equals(identifierType.Symbol, exceptionType))
+                                  {
+                                      context.ReportDiagnostic(Diagnostic.Create(rule, identifier.GetLocation()));
+                                  }
                               }
                           })
                           .Some().Do(t =>
                           {
-                              var identifier = t.Parent as IdentifierNameSyntax;
-                              var identiferType = context.SemanticModel.GetTypeInfo(identifier).Type;
-                              if (SymbolEqualityComparer.Default.Equals(identiferType, exceptionType))
+                              if (t.Parent is IdentifierNameSyntax identifier)
                               {
-                                  context.ReportDiagnostic(Diagnostic.Create(rule, identifier.GetLocation()));
+                                  var identiferType = context.SemanticModel.GetTypeInfo(identifier).Type;
+                                  if (SymbolEqualityComparer.Default.Equals(identiferType, exceptionType))
+                                  {
+                                      context.ReportDiagnostic(Diagnostic.Create(rule, identifier.GetLocation()));
+                                  }
                               }
                           })
                           .None().Do(() => { })

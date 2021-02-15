@@ -36,6 +36,10 @@ namespace Arnolyzer.Analyzers.LiskovSubstitutionPrincipleAnalyzers
                 compileContext =>
                 {
                     var notImplementedExceptionName = compileContext.Compilation.GetTypeByMetadataName("System.NotImplementedException");
+                    if (notImplementedExceptionName is null)
+                    {
+                        throw new Exception($"Could not get type for {nameof(NotImplementedException)}.");
+                    }
                     compileContext.RegisterSyntaxNodeAction(
                         symbolContext => LSPViolatingExceptionReporter.ReportLSPViolatingExceptionIfThrown(symbolContext, notImplementedExceptionName, Rule), 
                         SyntaxKind.ThrowStatement);

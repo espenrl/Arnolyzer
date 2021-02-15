@@ -44,7 +44,7 @@ namespace Arnolyzer.Analyzers.SingleResponsibilityAnalyzers
 
             foreach (var parameter in methodSymbol.Parameters.Where(parameter => parameter.RefKind != RefKind.None))
             {
-                var syntax = parameter.DeclaringSyntaxReferences[0].GetSyntax() as ParameterSyntax;
+                var syntax = (ParameterSyntax)parameter.DeclaringSyntaxReferences[0].GetSyntax();
 
                 context.ReportDiagnostic(Diagnostic.Create(Rule,
                                                            syntax.GetLocation(),
